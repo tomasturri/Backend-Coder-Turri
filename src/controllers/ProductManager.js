@@ -1,9 +1,14 @@
 const fs = require('fs/promises');
+const path = require('path');
 
 class ProductManager {
+  constructor(filePath) {
+    this.filePath = filePath;
+  }
+
   async getAllProducts(limit) {
     try {
-      const data = await fs.readFile('productos.json', 'utf8');
+      const data = await fs.readFile(this.filePath, 'utf8');
       const products = JSON.parse(data);
 
       if (limit) {
@@ -18,7 +23,7 @@ class ProductManager {
 
   async getProductById(productId) {
     try {
-      const data = await fs.readFile('productos.json', 'utf8');
+      const data = await fs.readFile(this.filePath, 'utf8');
       const products = JSON.parse(data);
 
       return products.find(product => product.id === productId);
@@ -27,6 +32,10 @@ class ProductManager {
     }
   }
 }
+
+
+const filePath = path.join(__dirname, '../models/productos.json');
+const productManager = new ProductManager(filePath);
 
 module.exports = { ProductManager };
 

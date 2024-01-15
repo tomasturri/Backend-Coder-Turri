@@ -1,20 +1,30 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { ProductManager } = require("../controllers/ProductManager.js");
-const path = require("path");
+const CartManager = require('../controllers/CartManager');
+const cartManager = new CartManager('../models/carrito.json');
 
-const filePath = path.join(__dirname, '../models/productos.json');
-const productManager = new ProductManager(filePath);
 
-// Rutas
-router.get("/carts", async (req, res) => {
-  try {
-    const products = await productManager.getAllProducts();
-    res.json(products);
-  } catch (error) {
-    console.error('Error al obtener los productos para el carrito:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
+// Ruta raíz POST /api/carts/
+router.post('/', async (req, res) => {
+    const cart = await cartManager.createCart();
+    res.json(cart);
+});
+
+// Ruta GET /api/carts/:cid
+router.get('/:cid', async (req, res) => {
+    const cartId = parseInt(req.params.cid);
+    const cart = await cartManager.getCartById(cartId);
+    res.json(cart);
+});
+
+// Ruta POST /api/carts/:cid/product/:pid
+router.post('/:cid/product/:pid', async (req, res) => {
+    const cartId = parseInt(req.params.cid);
+    const productId = parseInt(req.params.pid);
+    const { quantity } = req.body;
+
+    const result = await cartManager.addToCart(cartId, productId, quantity);
+    res.json(result);
 });
 
 module.exports = router;

@@ -2,17 +2,16 @@ const fs = require('fs').promises;
 
 class ProductManager {
 
-  constructor(path) {
-      this.path = path;
-      this.products = [];
-      this.nextProductId = 1;
-      this.init();
-  }
+    constructor(path) {
+        this.path = path;
+        this.products = [];
+        this.nextProductId = 1;
+        this.init();
+    }
 
-  async init() {
-      await this.loadProducts();
-  }
-
+    async init() {
+        await this.loadProducts();
+    }
     // Método para obtener todos los productos
     async getProducts() {
         

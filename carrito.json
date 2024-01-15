@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Leche",
+    "description": "Leche entera en envase de 1 litro",
+    "price": 900,
+    "img": "leche.jpg",
+    "code": "LM123",
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "title": "Pan",
+    "description": "Pan integral fresco",
+    "price": 700,
+    "img": "pan.jpg",
+    "code": "PN456",
+    "stock": 30
+  },
+  {
+    "id": 3,
+    "title": "Manzanas",
+    "description": "Manzanas rojas, paquete de 6 unidades",
+    "price": 310,
+    "img": "manzanas.jpg",
+    "code": "MN789",
+    "stock": 20
+  },
+  {
+    "id": 4,
+    "title": "Arroz",
+    "description": "Arroz blanco de grano largo, paquete de 1 kg",
+    "price": 250,
+    "img": "arroz.jpg",
+    "code": "AR012",
+    "stock": 45
+  },
+  {
+    "id": 5,
+    "title": "Pasta",
+    "description": "Espaguetis de trigo integral, paquete de 500 g",
+    "price": 200,
+    "img": "pasta.jpg",
+    "code": "PS345",
+    "stock": 10
+  },
+  {
+    "id": 6,
+    "title": "Huevos",
+    "description": "Huevos frescos, docena",
+    "price": 450,
+    "img": "huevos.jpg",
+    "code": "HV678",
+    "stock": 60
+  },
+  {
+    "id": 7,
+    "title": "Tomates",
+    "description": "Tomates maduros, paquete de 4 unidades",
+    "price": 550,
+    "img": "tomates.jpg",
+    "code": "TM901",
+    "stock": 15
+  },
+  {
+    "id": 8,
+    "title": "Aceite de Oliva",
+    "description": "Aceite de oliva virgen extra, botella de 500 ml",
+    "price": 1000,
+    "img": "aceite.jpg",
+    "code": "AO234",
+    "stock": 40
+  },
+  {
+    "id": 9,
+    "title": "Yogur Natural",
+    "description": "Yogur natural sin azúcar, pack de 4 unidades",
+    "price": 600,
+    "img": "yogur.jpg",
+    "code": "YN567",
+    "stock": 25
+  },
+  {
+    "id": 10,
+    "title": "Cereal Integral",
+    "description": "Cereal integral con frutas, caja de 500 g",
+    "price": 500,
+    "img": "cereal.jpg",
+    "code": "CI890",
+    "stock": 35
+  }
+]

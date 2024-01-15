@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const CartManager = require('../controllers/CartManager');
-const cartManager = new CartManager('../models/carrito.json');
+const cartManager = new CartManager('carrito.json');
 
 
 // Ruta raíz POST /api/carts/

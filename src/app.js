@@ -1,6 +1,7 @@
 const PUERTO = 8080;
 const express = require('express');
-const ProductManager = require('./dao/fs/ProductManager.js');
+const ProductManager = require('./dao/fs/ProductManager');
+
 const productsRouter = require('./routes/products.route.js');
 const cartsRouter = require('./routes/carts.route.js');
 const viewRouter = require('./routes/view.route.js');

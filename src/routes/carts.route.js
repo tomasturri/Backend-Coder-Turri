@@ -10,7 +10,7 @@ router.get('/carts', async (req, res) => {
     const carts = await manager;
     res.json(carts);
   } catch (error) {
-    console.error('Fallo al obtener al carrillo');
+    console.error('Fallo al obtener al carrito');
     res.json({ error: 'Error del servidor' });
   }
 });

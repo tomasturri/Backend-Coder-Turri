@@ -8,7 +8,7 @@ const viewRouter = require('./routes/view.route.js');
 const path = require('path');
 const socket = require('socket.io');
 const { engine, create} = require('express-handlebars');
-const MessageModel = require('./dao/models/message.model.js');
+
 require('./database.js');
 
 const hbs = create({

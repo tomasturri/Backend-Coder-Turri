@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Camiseta NBA",
+        "status": true,
+        "description": "Camiseta oficial de la NBA",
+        "price": 50,
+        "thumbnail": "sin imagen",
+        "code": "camiseta-nba-001",
+        "stock": 20,
+        "category": "camisetas-nba"
+    },
+    {
+        "title": "Pelota de Baloncesto",
+        "status": true,
+        "description": "Pelota oficial de baloncesto NBA",
+        "price": 30,
+        "thumbnail": "sin imagen",
+        "code": "pelota-nba-001",
+        "stock": 50,
+        "category": "pelotas-baloncesto"
+    },
+    {
+        "title": "Aro de Baloncesto",
+        "status": true,
+        "description": "Aro resistente para jugar baloncesto en exteriores",
+        "price": 100,
+        "thumbnail": "sin imagen",
+        "code": "aro-baloncesto-001",
+        "stock": 10,
+        "category": "accesorios-baloncesto"
+    },
+    {
+        "title": "Zapatillas de Baloncesto",
+        "status": true,
+        "description": "Zapatillas de baloncesto de alta calidad",
+        "price": 120,
+        "thumbnail": "sin imagen",
+        "code": "zapatillas-baloncesto-001",
+        "stock": 15,
+        "category": "zapatillas-baloncesto"
+    },
+    {
+        "title": "Balón de Baloncesto",
+        "status": true,
+        "description": "Balón oficial para jugar baloncesto en interiores",
+        "price": 25,
+        "thumbnail": "sin imagen",
+        "code": "balon-baloncesto-001",
+        "stock": 30,
+        "category": "pelotas-baloncesto"
+    },
+    {
+        "title": "Canasta de Baloncesto",
+        "status": true,
+        "description": "Canasta portátil para jugar baloncesto en cualquier lugar",
+        "price": 150,
+        "thumbnail": "sin imagen",
+        "code": "canasta-baloncesto-001",
+        "stock": 8,
+        "category": "accesorios-baloncesto"
+    },
+    {
+        "title": "Gorra NBA",
+        "status": true,
+        "description": "Gorra oficial de la NBA",
+        "price": 40,
+        "thumbnail": "sin imagen",
+        "code": "gorra-nba-001",
+        "stock": 25,
+        "category": "accesorios-baloncesto"
+    },
+    {
+        "title": "Chaqueta NBA",
+        "status": true,
+        "description": "Chaqueta oficial de la NBA",
+        "price": 80,
+        "thumbnail": "sin imagen",
+        "code": "chaqueta-nba-001",
+        "stock": 12,
+        "category": "ropa-baloncesto"
+    },
+    {
+        "title": "Mochila NBA",
+        "status": true,
+        "description": "Mochila oficial de la NBA",
+        "price": 60,
+        "thumbnail": "sin imagen",
+        "code": "mochila-nba-001",
+        "stock": 18,
+        "category": "accesorios-baloncesto"
+    },
+    {
+        "title": "Gorra de Baloncesto",
+        "status": true,
+        "description": "Gorra con diseño de baloncesto",
+        "price": 35,
+        "thumbnail": "sin imagen",
+        "code": "gorra-baloncesto-001",
+        "stock": 20,
+        "category": "accesorios-baloncesto"
+    },
+    {
+        "title": "Calcetines NBA",
+        "status": true,
+        "description": "Calcetines oficiales de la NBA",
+        "price": 15,
+        "thumbnail": "sin imagen",
+        "code": "calcetines-nba-001",
+        "stock": 35,
+        "category": "ropa-baloncesto"
+    },
+    {
+        "title": "Pulsera NBA",
+        "status": true,
+        "description": "Pulsera oficial de la NBA",
+        "price": 20,
+        "thumbnail": "sin imagen",
+        "code": "pulsera-nba-001",
+        "stock": 40,
+        "category": "accesorios-baloncesto"
+    }
+]

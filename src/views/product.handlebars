@@ -1,0 +1,33 @@
+{{>navbar}}
+<div class="container">
+    <div class="product-details  animate__animated animate__fadeInLeft">
+        <div class="thumbnail-container">
+            <img class="main-thumbnail" src="{{thumbnail0}}" alt="Product Thumbnail">
+            <div class="secondary-thumbnails">
+                <img class="thumbnail" src="{{thumbnail1}}" alt="Product Thumbnail">
+                <img class="thumbnail" src="{{thumbnail2}}" alt="Product Thumbnail">
+                <img class="thumbnail" src="{{thumbnail3}}" alt="Product Thumbnail">
+            </div>
+        </div>
+        <div class="product-info">
+            <h2 class="card--title">{{product.title}}</h2>
+            <p class="card--description">descripción: {{product.description}}</p>
+            <p class="card--price">precio: {{product.price}} USD</p>
+            <p class="card--code">codigo: {{product.code}}</p>
+            <p class="card--stock">stock: {{product.stock}}</p>
+            <p class="card--category">category: {{product.category}}</p>
+
+            <button class="buy-button">Comprar</button>
+        </div>
+    </div>
+</div>
+    {{!-- 
+    title: string;
+    description: string;
+    price: number;
+    thumbnail: string[];
+    code: string;
+    stock: number;
+    category: string;
+    status: boolean;
+     --}}

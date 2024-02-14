@@ -1,0 +1,40 @@
+<nav class="navbar animate__animated animate__bounce">
+  <i class="bi bi-controller"></i>
+  <button class="open-menu">abrir</button>
+  <div class="nav-items" id="nav">
+    <button class="close-menu">cerrar</button>
+    <a href="#" class="nav-item">Productos</a>
+    <a href="http://localhost:8080/chat" class="nav-item">Chat</a>
+    <a href="#" class="nav-item">Sobre Nosotros</a>
+  </div>
+</nav>
+<div class="text-center" style="color: #fff;">
+  <h2>Productos</h2>
+</div>
+<div class="product-list animate__animated animate__fadeInLeft">
+  {{#each products}}
+    <div class="product-item">
+      <div class="text-center">
+        <p class="product__title">{{this.title}}</p>
+      </div>
+      <p><b>Descripción:</b>{{this.description}}</p>
+      <p><b>Precio:</b>{{this.price}}</p>
+      <img src="{{this.thumbnail.[0]}}" alt="imagen-producto" width="150">
+
+      <a href="http://localhost:8080/products/{{this.id}}" class="buy-button">comprar</a>
+    </div>
+  {{/each}}
+</div>
+
+<div class="text-center">
+  {{#if hasPrevPage}}
+      <a href="{{prevLink}}" class="navigate-button">Anterior</a>
+  {{/if}}
+  {{#if hasNextPage}}
+      <a href="{{nextLink}}" class="navigate-button">Siguiente</a>
+  {{/if}}
+</div>
+
+
+
+  <script src='js/navbar.js'></script>

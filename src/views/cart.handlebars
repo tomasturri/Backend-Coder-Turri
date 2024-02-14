@@ -1,0 +1,21 @@
+{{>navbar}}
+<div class="text-center">
+    <h2 style="color: #fff;">Carrito de compras<i class="bi bi-cart"></i></h2>
+</div>
+<div class=" animate__animated animate__fadeInLeft">
+    {{#each products}}
+        <div class="product-details row w-75">
+            <div class="col-8">
+                <p>Producto: {{this.product.title}}</p>
+                <p>Código : {{this.product.code}}</p>
+                <p>Categoria :{{this.product.category}}</p>
+                <p>Precio : {{this.product.price}}</p>
+                <p>Cantidad: {{this.quantity}}</p>
+                <p>Total: {{multiply this.product.price this.quantity}}</p>
+            </div>
+            <div class="col-4">
+                <img src="{{this.product.thumbnail.[0]}}" alt="" width="150">
+            </div>
+        </div>
+    {{/each}}
+</div>

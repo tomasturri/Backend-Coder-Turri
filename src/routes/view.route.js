@@ -7,13 +7,21 @@ const cartManager = new CartManager('');
 
 router.get('/', async (req, res) => {
   try {
-    let products = [];
-    products = await productManager.getProducts();
-    console.log('products', products);
-    res.render('index', { products });
-
+    const limit = parseInt(req.query.limit) || 20;
+    const page = parseInt(req.query.page) || 1;
+    let result = await productManager.getProducts(limit, page);
+    const products = result.payload;
+    res.render('index', {
+      products,
+      style: '../css/style.css',
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevLink: result.prevLink,
+      nextLink: result.nextLink,
+      limit
+    });
   } catch (error) {
-    res.status(500).json('Error interno del servidor: '+ error);
+    res.status(500).json({error: error.message});
   }
 });
 
@@ -67,7 +75,7 @@ router.get('/carts/:cid',async(req,res)=>{
 
 router.get('/realtimeproducts', async (req, res) => {
   try {
-    res.render('realTimeProducts');
+    res.render('realTimeProducts', {style: './css/style.css'});
   } catch (error) {
     res.status(500).json({ error: error });
   }

@@ -146,7 +146,7 @@ a.nav-item:hover {
   background-color: var(--primary-color);
 }
 
-.buy-button {
+.buy-button, .btn-customize {
   background-color: var(--dark-purple);
   color: #fff;
   padding: 8px 16px;
@@ -157,7 +157,7 @@ a.nav-item:hover {
   text-decoration: none;
 }
 
-.buy-button:hover {
+.buy-button:hover, .btn-customize:hover {
   background-color: var(--primary-color);
 }
 

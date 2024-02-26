@@ -18,7 +18,8 @@ router.get('/', async (req, res) => {
       hasNextPage: result.hasNextPage,
       prevLink: result.prevLink,
       nextLink: result.nextLink,
-      limit
+      limit,
+      user: req.session.user
     });
   } catch (error) {
     res.status(500).json({error: error.message});
@@ -38,7 +39,8 @@ router.get('/products',async(req,res)=>{
       hasNextPage: result.hasNextPage,
       prevLink: result.prevLink,
       nextLink: result.nextLink,
-      limit
+      limit,
+      user: req.session.user
     });
   } catch (error) {
     res.status(500).json({error: error.message});
@@ -83,6 +85,27 @@ router.get('/realtimeproducts', async (req, res) => {
 
 router.get('/chat',(req,res)=>{
   res.render("chat");
+});
+
+router.get('/login',(req, res)=>{
+  if(req.session.login){
+    return res.redirect('/login');
+  }
+  res.render('login', {style: '../css/style.css'});
+});
+
+router.get('/register',(req, res) => {
+  if(req.session.login){
+    return res.redirect('/profile');
+  }
+  res.render('register',  {style: '../css/style.css'});
+});
+
+router.get('/profile',(req, res)=>{
+  if(!req.session.login){
+    return res.redirect('/login');
+  }
+  res.render('profile', { user: req.session.user});
 });
 
 module.exports = router;

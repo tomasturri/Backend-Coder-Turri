@@ -18,6 +18,8 @@ body {
   font-family: "Euclid Circular A", "Poppins";
   padding-top: 72px;
   background-color: #1B262C;
+  padding: 0;
+  margin: 0;
 }
 
 * {
@@ -37,7 +39,7 @@ nav {
   position: fixed;
   top: 0;
   left:0;
-  translate: 0 -72px;
+  transform: translateY(-72px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -261,3 +263,27 @@ a.nav-item:hover {
 
 
 /* detalles de producto */
+
+/* Inicio de sesion */
+.form-login-input, .form-register-input {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+.form-login-body {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.form-register-body {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}

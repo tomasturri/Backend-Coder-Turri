@@ -2,14 +2,15 @@ const PUERTO = 8080;
 const express = require('express');
 const ProductManager = require('./dao/db/product-manager-db.js');
 const productManager = new ProductManager('');
-const productsRouter = require('./routes/products.route.js');
-const cartsRouter = require('./routes/carts.route.js');
-const viewRouter = require('./routes/view.route.js');
+const { productsRouter,cartsRouter,viewRouter,userRouter,sessionRouter} = require('./routes');
 const path = require('path');
 const socket = require('socket.io');
 const { engine, create} = require('express-handlebars');
 const MessageModel = require('./dao/models/message.model.js');
-
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const passport = require('passport');
+const initializePassword = require('./config/passport.config.js');
 require('./database.js');
 
 const hbs = create({
@@ -29,11 +30,27 @@ app.use(express.static('./src/public'));
 //Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(session({
+  secret: 'secretCoder', //note: valor para firmar cookie
+  resave: true,
+  saveUninitialized: true,
+  // store: new fileStore({path: './src/sessions', ttl: 50, retries: 1}) 
+  //el ttl esta en segundos, retries es la cantidad de veces que el servidor tratara de leer el archivo
+  store: MongoStore.create({
+      mongoUrl: 'mongodb+srv://tomast:tomast@tomast.olnv4zc.mongodb.net/?retryWrites=true&w=majority&appName=tomast',
+      ttl: 90
+  })
+}));
 
 // rutas
 app.use('/api', productsRouter);
 app.use('/api', cartsRouter);
 app.use('/', viewRouter);
+app.use('/api/users', userRouter);
+app.use('/api/sessions', sessionRouter);
+initializePassword();
+app.use(passport.initialize());
+app.use(passport.session());
 
 hbs.handlebars.registerHelper('multiply', (a, b) => a * b);
 
@@ -47,7 +64,9 @@ const httpServer = app.listen(PUERTO, () => {
 
 // socket.io
 
-const io = new socket.Server(httpServer); 
+const io = new socket.Server(httpServer); //note creamos una isntancia de socket
+
+
 
 
 
@@ -56,6 +75,8 @@ io.on('connection', async (socket) => {
   const products = await productManager.getProducts();
   console.log(products.payload);
   socket.emit('products', {products: products.payload});
+
+  
 
   socket.on('addProduct', async (product) => {
     try {

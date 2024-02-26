@@ -1,10 +1,9 @@
 <nav class="navbar animate__animated animate__bounce">
-    <i class="bi bi-controller"></i>
+    
     <button class="open-menu">abrir</button>
     <div class="nav-items" id="nav">
         <button class="close-menu">cerrar</button>
         <a href="http://localhost:8080/products" class="nav-item">Productos</a>
-        <a href="http://localhost:8080/chat" class="nav-item">Chat</a>
         <a href="#" class="nav-item">Sobre Nosotros</a>
         {{#if user}}
             <a href="/api/sessions/logout" class="nav-item">Cerrar Sesión</a>

@@ -171,15 +171,7 @@ a.nav-item:hover {
   flex-direction: column;
 }
 
-.bi.bi-chat {
-  font-size: 24px; 
-}
 
-.chat-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
 .title {
   margin-left: 10px; 

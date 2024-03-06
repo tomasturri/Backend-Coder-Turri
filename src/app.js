@@ -38,9 +38,10 @@ app.use(session({
   //el ttl esta en segundos, retries es la cantidad de veces que el servidor tratara de leer el archivo
   store: MongoStore.create({
       mongoUrl: 'mongodb+srv://tomast:tomast@tomast.olnv4zc.mongodb.net/?retryWrites=true&w=majority&appName=tomast',
-      ttl: 90
+      ttl: 100
   })
 }));
+
 
 // rutas
 app.use('/api', productsRouter);
@@ -67,7 +68,15 @@ const httpServer = app.listen(PUERTO, () => {
 const io = new socket.Server(httpServer); //note creamos una isntancia de socket
 
 
+// establecemos la conexión
 
+// io.on('connection', (socket) => {
+//   socket.on('message', async(data) => {
+//     await MessageModel.create(data);
+//     const messages = await MessageModel.find();
+//     io.sockets.emit('messagesLogs', messages);
+//   });
+// });
 
 
 io.on('connection', async (socket) => {
@@ -76,7 +85,11 @@ io.on('connection', async (socket) => {
   console.log(products.payload);
   socket.emit('products', {products: products.payload});
 
-  
+  // socket.on('deleteProduct', async (id) => {
+  //   await productManager.deleteProduct(id);
+  //   const products = await productManager.getProducts();
+  //   io.sockets.emit('products', products);
+  // });
 
   socket.on('addProduct', async (product) => {
     try {

@@ -3,7 +3,6 @@
 
 /* url paleta de colores: https://colorhunt.co/palette/0306373c0753720455910a67*/
 
-
 :root {
   --primary-color: #0e2011;
   --secondary-color: #3C0753;
@@ -11,7 +10,6 @@
   --deep-magenta: #910A67;
   --background-color:#1F2544;
 }
-
 
 body {
   color: #4c4b5b;
@@ -163,6 +161,25 @@ a.nav-item:hover {
   background-color: var(--primary-color);
 }
 
+.btn-github {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+
+
+.btn-github:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
 /* /products */
 
 
@@ -171,7 +188,15 @@ a.nav-item:hover {
   flex-direction: column;
 }
 
+.bi.bi-chat {
+  font-size: 24px; 
+}
 
+.chat-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
 .title {
   margin-left: 10px; 

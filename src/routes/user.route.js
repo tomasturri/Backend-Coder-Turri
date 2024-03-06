@@ -4,34 +4,23 @@ const router = express.Router();
 const { createHash } = require('../utils/hashBcrypt'); 
 const passport = require('passport');
 
+router.post('/', passport.authenticate("register", {
+    failureRedirect: "/register"
+}), async (req, res) => {
 
-// router.post('/',async(req, res)=>{
-//     const {first_name, last_name, email, password, age} = req.body;
-//     try {
-//         const userExists = await UserModel.findOne({email});
-//         if(userExists){
-//             return res.status(400).send({error: 'email ya registrado'});
-//         }
-//         const newUser = await UserModel.create(
-//             {
-//                 first_name, 
-//                 last_name, 
-//                 email, 
-//                 password: createHash(password), 
-//                 age
-//             });
-//         req.session.login = true;
-//         req.session.user = {
-//             ...newUser._doc
-//         }
-//         res.status(200).json({
-//             message: 'Usuario creado con éxito',
-//     });
-//     } catch (error) {
-//         res.status(400).json({message: 'error al crear el usuario ' + error})
-//     }
-// });
+    if(!req.user) return res.status(400).send({status: "error", message: "Credenciales invalidas"});
 
+    // req.session.user = {
+    //     first_name: req.user.first_name,
+    //     last_name: req.user.last_name,
+    //     age: req.user.age,
+    //     email: req.user.email
+    // };
+
+    // req.session.login = true;
+
+    res.redirect("/login");
+});
 
 router.post('/',passport.authenticate('register',{
     failureRedirect: '/failedregister'

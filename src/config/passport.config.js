@@ -1,10 +1,9 @@
-//note: importamos
 const passport = require('passport');
 const local = require('passport-local');
 const UserModel = require('../dao/models/user.model');
 const { createHash , isValidPassword } = require('../utils/hashBcrypt');
-
 const LocalStrategy = local.Strategy;
+const GitHubStrategy = require('passport-github2');
 
 const initializePassword = ()=>{
     passport.use('register', new LocalStrategy({
@@ -25,9 +24,9 @@ const initializePassword = ()=>{
                     role: 'user'
                 }
                 const result = await UserModel.create(newUser);
-                return done(null, result);
+                done(null, result);
             } catch (error) {
-                return done(error);
+                done(error);
             }
         }));
     passport.use('login', 
@@ -38,7 +37,7 @@ const initializePassword = ()=>{
                     const userExists = await UserModel.findOne({email});
                     if(!userExists) return done(null, false);
                     if(!isValidPassword(password, userExists)) return done(null, false);
-                    return done(null, userExists);
+                    done(null, userExists);
                 } catch (error) {
                     done(error);
                 }
@@ -53,6 +52,32 @@ const initializePassword = ()=>{
         let user = await UserModel.findById({_id: id});
         done(null, user);
     });
+
+    passport.use('github', new GitHubStrategy({
+        clientID: 'Iv1.1499180c33b529c0',
+        clientSecret: '67f7c86b7507e1af1dfe1abc9b7a2262048cdb6c',
+        callbackURL: "http://localhost:8080/api/sessions/githubcallback"
+    }, async (accessToken, refreshToken, profile, done) => {
+        try {
+            let user = await UserModel.findOne({ email: profile._json.email });
+            if(!user) {
+                let newUser = {
+                    first_name: profile._json.name,
+                    last_name: '',
+                    age: 18,
+                    email: profile._json.email,
+                    passworrd: '', //password lo maneja github por eso lo dejamos vacio
+                    role: 'user'
+                }
+                let result = await UserModel.create(newUser);
+                done(null, result);
+            } else {
+                done(null, user); // si encuentro el user, lo retorno en el done
+            }
+        } catch (error) {
+            done(error);
+        }
+    }));
 };
 
 

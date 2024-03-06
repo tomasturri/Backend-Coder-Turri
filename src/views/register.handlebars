@@ -1,11 +1,11 @@
 <div class="form-register-body">
-    <div class="form-register-input">
+    <div class="form-register-input animate__animated animate__fadeInLeft">
         <h1 class="text-center">Registrar</h1>
         <form action="/api/users" method="post">
             <label for="first_name" class="form-label">Nombre</label>
-            <input type="text" id="first_name" name="first_name" class="form-control" required>
+            <input type="text" id="first_name" name="first_name" class="form-control" required pattern="[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+" title="Solo se permiten letras y espacios">
             <label for="last_name" class="form-label">Apellido</label>
-            <input type="text" id="last_name" name="last_name" class="form-control" required>
+            <input type="text" id="last_name" name="last_name" class="form-control" required pattern="[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+" title="Solo se permiten letras y espacios">
             <label for="email" class="form-label">Email</label>
             <input type="email" id="email" name="email" class="form-control" required>
             <label for="password" class="form-label">Contraseña</label>
@@ -15,6 +15,10 @@
             <br>
             <div class="text-center">
                 <button type="submit" class="btn-customize">Register</button>
+            </div>
+            <br>
+            <div class="text-center">
+                <a href="/api/sessions/github" class="btn-github"><i class="bi bi-github"></i></a>
             </div>
         </form>
         <div class="text-center" style="margin-top: 10px; padding-bottom: 20px;">

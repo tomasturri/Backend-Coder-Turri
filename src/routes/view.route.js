@@ -5,25 +5,18 @@ const productManager = new ProductManager('');
 const CartManager = require('../dao/db/cart-manager-db');
 const cartManager = new CartManager('');
 
-router.get('/', async (req, res) => {
-  try {
-    const limit = parseInt(req.query.limit) || 20;
-    const page = parseInt(req.query.page) || 1;
-    let result = await productManager.getProducts(limit, page);
-    const products = result.payload;
-    res.render('index', {
-      products,
-      style: '../css/style.css',
-      hasPrevPage: result.hasPrevPage,
-      hasNextPage: result.hasNextPage,
-      prevLink: result.prevLink,
-      nextLink: result.nextLink,
-      limit,
-      user: req.session.user
-    });
-  } catch (error) {
-    res.status(500).json({error: error.message});
+// router.get('/', async (req, res) => {
+//   if(req.session.login){
+//     return res.redirect('/products');
+//   }
+//   res.render('login', {style: '../css/style.css', title: 'Inicio Sesión'});
+// });
+
+router.all(['/','/login'],(req, res) => {
+  if(req.session.login){
+    return res.redirect('/products');
   }
+  res.render('login', {style: '../css/style.css', title: 'Inicio Sesión'});
 });
 
 router.get('/products',async(req,res)=>{
@@ -40,7 +33,8 @@ router.get('/products',async(req,res)=>{
       prevLink: result.prevLink,
       nextLink: result.nextLink,
       limit,
-      user: req.session.user
+      user: req.session.user,
+      title: 'Productos'
     });
   } catch (error) {
     res.status(500).json({error: error.message});
@@ -58,7 +52,7 @@ router.get('/products/:cid',async(req,res)=>{
     const thumbnail2 = product.thumbnail[2];
     const thumbnail3 = product.thumbnail[3];
     res.render('product',{
-      product,thumbnail0, thumbnail1,thumbnail2, thumbnail3, style: '../css/style.css'});
+      product,thumbnail0, thumbnail1,thumbnail2, thumbnail3, style: '../css/style.css', title: 'Detalle de producto'});
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -87,25 +81,18 @@ router.get('/chat',(req,res)=>{
   res.render("chat");
 });
 
-router.get('/login',(req, res)=>{
-  if(req.session.login){
-    return res.redirect('/login');
-  }
-  res.render('login', {style: '../css/style.css'});
-});
+// router.get('/login',(req, res)=>{
+//   if(req.session.login){
+//     return res.redirect('/products');
+//   }
+//   res.render('login', {style: '../css/style.css', title: 'Inicio Sesión'});
+// });
 
 router.get('/register',(req, res) => {
   if(req.session.login){
-    return res.redirect('/profile');
+    return res.redirect('/products');
   }
-  res.render('register',  {style: '../css/style.css'});
-});
-
-router.get('/profile',(req, res)=>{
-  if(!req.session.login){
-    return res.redirect('/login');
-  }
-  res.render('profile', { user: req.session.user});
+  res.render('register',  {style: '../css/style.css', title: 'Registro'});
 });
 
 module.exports = router;

@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
     age : {
         type: Number, 
     },
+    cart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'carts'
+    },
     role: {
         type: String,
     }

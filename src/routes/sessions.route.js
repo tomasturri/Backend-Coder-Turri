@@ -1,46 +1,14 @@
 const express = require('express');
-const userModel = require('../dao/models/user.model');
 const router = express.Router();
-const { isValidPassword } = require('../utils/hashBcrypt');
 const passport = require('passport');
-
+const SessionController = require('../controllers/SessionController');
+const sessionController = new SessionController();
 
 router.post('/login', passport.authenticate('login', {
     failureRedirect: 'api/sessions/faillogin'
-}), async (req, res)=>{
-    if(!req.user) return res.status(400).send({status: 'error', message: 'credenciales invalidas'});
-    if(req.user.email === 'adminCoder@coder.com'){
-            req.session.user = {
-                first_name: req.user.first_name,
-                last_name: req.user.last_name,
-                email: req.user.email,
-                age: req.user.age,
-                role: 'admin'
-            };
-    }else{
-        req.session.user = {
-            first_name: req.user.first_name,
-            last_name: req.user.last_name,
-            email: req.user.email,
-            age: req.user.age,
-            role: req.user.role
-        };
-    }
-    req.session.login = true;
-    res.redirect('/products');
-});
+}), (req, res) => sessionController.login(req, res));
 
-router.get('/logout',(req, res)=>{
-    try {
-        if (req.session.login) {
-            req.session.destroy();
-        }
-        res.redirect("/login");
-
-    } catch (error) {
-        res.status(500).json({message: error});
-    }
-});
+router.get('/logout',(req, res) => sessionController.logout(req, res));
 
 router.get('faillogin', async (req, res) => {
     res.json({message: 'fallo la estrategia'});
@@ -51,17 +19,8 @@ router.get('faillogin', async (req, res) => {
 router.get('/github', passport.authenticate('github', {scope: ['user:email']}) ,async(req, res)=>{
 });
 
-router.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/login' }), async (req, res) => {
-    req.session.user = req.user;
-    req.session.login = true;
-    res.redirect("/products");
-});
+router.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => sessionController.githubcallback(req, res) );
 
-router.get('/current', (req, res)=>{
-    const user = req.session.user;
-    res.status(200).json({
-        user
-    });
-});
+router.get('/current', (req, res)=> sessionController.current(req, res));
 
 module.exports = router;

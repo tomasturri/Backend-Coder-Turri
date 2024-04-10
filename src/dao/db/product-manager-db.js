@@ -1,4 +1,4 @@
-const ProductModel = require("../models/product.model");
+const ProductModel = require('../models/product.model');
 
 class ProductManager {
     async addProduct(product) {
@@ -13,12 +13,20 @@ class ProductManager {
                 code,
                 stock,
             } = product;
-        
-            if (!title || !description || !price || !thumbnail || !code || !stock || !category) {
+
+            if (
+                !title ||
+                !description ||
+                !price ||
+                !thumbnail ||
+                !code ||
+                !stock ||
+                !category
+            ) {
                 throw new Error('Todos los campos son obligatorios!!');
             }
-            
-            const productExist = await ProductModel.findOne({code});
+
+            const productExist = await ProductModel.findOne({ code });
 
             if (productExist) throw new Error('El código debe ser único');
 
@@ -34,50 +42,58 @@ class ProductManager {
             });
 
             await newProduct.save(); //note: guardamos el producto con mongoose
-        }catch(error){
+        } catch (error) {
             throw new Error(error);
         }
-        }
+    }
 
-    async getProducts(limit=10, page=1, query={}, sort=null){
-        try{
+    async getProducts(limit = 10, page = 1, query = {}, sort = null) {
+        try {
             let products = '';
             let prevLink = '';
             let nextLink = '';
-            
-            if(sort) {
+
+            if (sort) {
                 products = await ProductModel.paginate(
                     query, //busqueda general creo que seria {} onda un objeto vacio
-                    {   
+                    {
                         limit,
                         page,
-                        sort:{
-                            price: sort
-                        }
+                        sort: {
+                            price: sort,
+                        },
                     }
-                    );
+                );
                 prevLink = products.hasPrevPage
-                ? `?limit=${limit}&page=${products.prevPage}&sort=${sort}&query=${JSON.stringify(query)}`
-                :null;
-    
-                nextLink = products.hasNextPage 
-                ? `?limit=${limit}&page=${products.nextPage}&sort=${sort}&query=${JSON.stringify(query)}`
-                :null;
-            }else {
+                    ? `?limit=${limit}&page=${
+                          products.prevPage
+                      }&sort=${sort}&query=${JSON.stringify(query)}`
+                    : null;
+
+                nextLink = products.hasNextPage
+                    ? `?limit=${limit}&page=${
+                          products.nextPage
+                      }&sort=${sort}&query=${JSON.stringify(query)}`
+                    : null;
+            } else {
                 products = await ProductModel.paginate(
                     query, //busqueda general creo que seria {} onda un objeto vacio
-                    {   
+                    {
                         limit,
-                        page
+                        page,
                     }
-                    );
+                );
                 prevLink = products.hasPrevPage
-                ? `?limit=${limit}&page=${products.prevPage}&query=${JSON.stringify(query)}`
-                :null;
-    
-                nextLink = products.hasNextPage 
-                ? `?limit=${limit}&page=${products.nextPage}&query=${JSON.stringify(query)}`
-                :null;
+                    ? `?limit=${limit}&page=${
+                          products.prevPage
+                      }&query=${JSON.stringify(query)}`
+                    : null;
+
+                nextLink = products.hasNextPage
+                    ? `?limit=${limit}&page=${
+                          products.nextPage
+                      }&query=${JSON.stringify(query)}`
+                    : null;
             }
             // products.map(product => console.log(product.price));
             // console.log(products);
@@ -89,7 +105,7 @@ class ProductManager {
             //note: urls para dirigir a pagina anterior y siguiente
 
             return {
-                payload:products.docs,
+                payload: products.docs,
                 totalPages: products.totalPages,
                 prevPages: products.prevPage || null,
                 nextPages: products.nextPage || null,
@@ -99,37 +115,40 @@ class ProductManager {
                 prevLink,
                 nextLink,
             };
-        }catch(error){
+        } catch (error) {
             throw new Error(error);
         }
     }
 
-    async getProductById(id){
+    async getProductById(id) {
         try {
             const product = await ProductModel.findById(id);
-            if(!product) throw new Error('Producto no encontrado');
+            if (!product) throw new Error('Producto no encontrado');
             return product;
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    async updateProduct(id, product){
+    async updateProduct(id, product) {
         try {
-            const updateProduct = await ProductModel.findByIdAndUpdate(id, product);
-            if(!updateProduct) throw new Error('No se encuentra el producto');
+            const updateProduct = await ProductModel.findByIdAndUpdate(
+                id,
+                product
+            );
+            if (!updateProduct) throw new Error('No se encuentra el producto');
             return updateProduct;
-        }catch (error) {
+        } catch (error) {
             throw new Error('Error al actualizar el producto', error);
         }
-        }
+    }
 
-    async deleteProduct(id){
+    async deleteProduct(id) {
         try {
             const deletedProduct = await ProductModel.findByIdAndDelete(id);
-            if(!deletedProduct) throw new Error('Error al borrar producto');
+            if (!deletedProduct) throw new Error('Error al borrar producto');
             return deletedProduct;
-        }catch (error) {
+        } catch (error) {
             throw new Error(error);
         }
     }

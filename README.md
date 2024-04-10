@@ -9,7 +9,7 @@ Comisión : 50015
 * Clonar el repositorio de Github
 
 ```
-git clone https://github.com/NicolasMamani/Backend-Coderhouse-Mamani.git
+git clone https://github.com/tomasturri/Backend-Coder-Turri
 ```
 
 * Una vez clonado, debes entrar a la carpeta y ejecutar
@@ -28,7 +28,7 @@ npm run dev
 
 Para crear la variable de entorno debes dirigirte a la raíz del proyecto y crear un archivo `.env.development`
 ```
-MONGO_URL= mongodb+srv://tomast:tomast@tomast.olnv4zc.mongodb.net/ecommerce?retryWrites=true&w=majority
+MONGO_URL=  mongodb+srv://tomast:tomast@tomast.olnv4zc.mongodb.net/ecommerce?retryWrites=true&w=majority
 ```
 
 <!-- ## Endpoints
@@ -43,4 +43,3 @@ parametros
 * query={"parametro":"consulta"}. Ej `http://localhost:8080/api/products?query={"title":"Cámara"}`
 
 ### Carrito -->
-

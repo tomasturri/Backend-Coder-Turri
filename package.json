@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js --mode development"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +22,12 @@
     "express-session": "^1.18.0",
     "github2": "^2.4.0",
     "handlebars": "^4.7.8",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.2",
     "mongoose-paginate-v2": "^1.8.0",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "session-file-store": "^1.5.0",
     "socket.io": "^4.7.4"

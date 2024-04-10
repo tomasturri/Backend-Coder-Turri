@@ -1,15 +1,32 @@
-<nav class="navbar animate__animated animate__bounce">
-    <p class="text-white nav__title"><a  style="text-decoration: none;" href="http://localhost:8080/products">NBA shop</a></p>
-    <button class="open-menu">abrir</button>
-    <div class="nav-items" id="nav">
-        <button class="close-menu">cerrar</button>
-        <a href="http://localhost:8080/products" class="nav-item">Productos</a>
-        <a href="#" class="nav-item">Sobre Nosotros</a>
+
+<nav class='navbar animate__animated animate__bounce'>
+    <p class='text-white nav__title'><a
+            style='text-decoration: none;'
+            href='http://localhost:8080/products'>NBA Shop</a></p>
+    {{#if user}}
+        <div style='color: #fff'>Usuario:
+            {{user.firstName}}
+            {{user.lastName}}</div>
+    {{/if}}
+    <button class='open-menu'>abrir</button>
+    <div class='nav-items' id='nav'>
+        <button class='close-menu'>cerrar</button>
+        <a href='http://localhost:8080/products' class='nav-item'>Productos</a>
+        <a
+            href=''
+            class='nav-item btn-cart'
+            style='text-decoration: none'
+        >Carrito</a>
         {{#if user}}
-            <a href="/api/sessions/logout" class="nav-item">Cerrar Sesión</a>
+            <a href='/api/users/logout' class='nav-item'>Cerrar Sesión</a>
         {{else}}
-            <a href="/login" class="nav-item">Iniciar Sesión</a>
+            <a href='/login' class='nav-item'>Iniciar Sesión</a>
         {{/if}}
     </div>
 </nav>
-
+<script
+    src='
+https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
+'
+></script>
+<script src='../js/navbar.js'></script>

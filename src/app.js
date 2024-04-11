@@ -87,6 +87,7 @@ const io = new socket.Server(httpServer); //note creamos una isntancia de socket
 //     io.sockets.emit('messagesLogs', messages);
 //   });
 // });
+//
 
 io.on('connection', async (socket) => {
     const limit = 30;

@@ -6,7 +6,7 @@ const productService = new ProductService();
 class CartController {
     async purchaseCart(req, res) {
         try {
-            // const products = await cartService.getCartById(req.body.id);
+            // const products= await cartService.getCartById(req.body.id);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }

@@ -15,7 +15,7 @@ class UserController {
         // if (!req.user)
         //     return res
         //         .status(400)
-        //         .send({ status: 'error', message: 'Credenciales invalidas' });
+        //   .send({ status: 'error', message: 'Credenciales invalidas' });
 
         const userExist = await UserModel.findOne({ email });
         if (userExist) {

@@ -11,7 +11,7 @@ class ViewController {
     async login(req, res) {
         {
             // if(req.session.login){
-            //   return res.redirect('/products');
+            // return res.redirect('/products');
             // }
             res.render('login', {
                 style: '../css/style.css',

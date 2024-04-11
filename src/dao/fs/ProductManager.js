@@ -32,11 +32,11 @@ class ProductManager {
       throw new Error('El código debe ser único');
     }
 
-    // obtenemos el ultimo id y lo asignamos a la clase
+    //obtenemos el ultimo id y lo asignamos a la clase
     const lastIdSaved = await this.getLastId();
     ProductManager.lastId = lastIdSaved + 1;
 
-    // creamos productos para probar las clases
+    //creamos productos para probar las clases
     const newProduct = {
       id: ProductManager.lastId,
       title: title,

@@ -116,5 +116,5 @@ const cookieExtractor = req => {
     return token;
 }
 
-
+.
 module.exports = initializePassword;

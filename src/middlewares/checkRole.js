@@ -20,5 +20,5 @@ const checkUserRole = (allowedRoles) => (req, res, next) => {
         );
     }
 };
-
+.
 module.exports = checkUserRole;

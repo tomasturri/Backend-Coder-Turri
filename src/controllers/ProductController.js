@@ -1,6 +1,6 @@
 const ProductService = require('../services/ProductService');
 const productService = new ProductService();
-
+.
 class ProductController {
     async getProducts(req, res){
         try {

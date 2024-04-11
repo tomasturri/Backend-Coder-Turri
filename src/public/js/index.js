@@ -127,7 +127,7 @@ function sendMessage() {
     }
     chatBox.value = '';
 }
-
+.
 // note sweet alert 2
 
 Swal.fire({

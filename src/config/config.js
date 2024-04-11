@@ -15,4 +15,4 @@ const configObject = {
     PUERTO: process.env.PUERTO,
 };
 
-module.exports = configObject;
+module.exports = configObject;.

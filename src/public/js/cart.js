@@ -3,7 +3,7 @@ const idElement = document.querySelector('.card--id');
 
 const url = 'http://localhost:8080/api/carts';
 let config;
-
+.
 buyBottom.addEventListener('click', (event) => {
     const productId = idElement.innerText.split(':')[1].trim();
     event.preventDefault();

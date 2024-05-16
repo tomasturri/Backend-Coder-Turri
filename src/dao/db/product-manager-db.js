@@ -142,7 +142,7 @@ class ProductManager {
             throw new Error('Error al actualizar el producto', error);
         }
     }
-.
+
     async deleteProduct(id) {
         try {
             const deletedProduct = await ProductModel.findByIdAndDelete(id);
